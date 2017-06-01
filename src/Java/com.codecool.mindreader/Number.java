@@ -1,5 +1,8 @@
 package com.codecool.mindreader;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -9,12 +12,21 @@ import java.util.Stack;
  * information about the digits' correctness.
  */
 public class Number {
+    private static final Logger logger = LoggerFactory.getLogger(Number.class);
     private List<Integer> listOfDigits;
     private List<Integer> indicesOfCorrectDigits;
 
     public Number() {
         this.listOfDigits = new ArrayList();
-        this.indicesOfCorrectDigits = new ArrayList<>();
+        this.indicesOfCorrectDigits = new ArrayList();
+        logger.debug("Number initialized!");
+    }
+
+    /**
+     * @return Returns with the list of digits.
+     */
+    public List<Integer> getListOfDigits() {
+        return listOfDigits;
     }
 
     /**
@@ -60,6 +72,7 @@ public class Number {
         }
         java.lang.String stringNum = stringBuilder.toString();
         int number = Integer.parseInt(stringNum);
+        logger.debug("The integer number: " + number);
         return number;
     }
 }
