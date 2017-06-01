@@ -10,6 +10,18 @@ import java.util.Random;
 public class MindReader {
     private List<Number> numbers = new ArrayList<>();
 
+    public MindReader(int numberOfDigits) {
+        this.setup(numberOfDigits);
+    }
+
+    private void setup(int numberOfDigits) {
+        Number randomNumber = new Number();
+        for (int i = 0; i < numberOfDigits; i++) {
+            randomNumber.addDigitToList(newDigit(i));
+        }
+        numbers.add(randomNumber);
+    }
+
     private void newTurn(int numOfCorrectDigits) {
 
     }
@@ -27,6 +39,6 @@ public class MindReader {
     }
 
     public static void main(String[] args) {
-
+        MindReader mindReader = new MindReader(5);
     }
 }
