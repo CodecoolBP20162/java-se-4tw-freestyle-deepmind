@@ -1,44 +1,62 @@
 package com.codecool.mindreader;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
-/**
- * Created by mate on 2017.05.31..
- */
 public class MindReader {
-    private List<Number> numbers = new ArrayList<>();
+    private Number guessedNumber;
+    private int numberOfDigits;
 
     public MindReader(int numberOfDigits) {
-        this.setup(numberOfDigits);
+        this.numberOfDigits = numberOfDigits;
+        this.setup();
     }
 
-    private void setup(int numberOfDigits) {
-        Number randomNumber = new Number();
-        for (int i = 0; i < numberOfDigits; i++) {
-            randomNumber.addDigitToList(newDigit(i));
+    private void setup() {
+        guessedNumber = newNumber();
+    }
+
+    private void newTurn() {
+        int correctDigits = userInput();
+        while (correctDigits != numberOfDigits) {
+            guessedNumber = newNumber();
+            correctDigits = userInput();
         }
-        numbers.add(randomNumber);
     }
 
-    private void newTurn(int numOfCorrectDigits) {
+    private Number newNumber() {
+        Number newNumber = new Number();
+        for (int i = 0; i < numberOfDigits; i++) {
+            newNumber.addDigitToList(newDigit(i));
+        }
+        return newNumber;
+    }
 
+    private void compareNumbers(Number number) {
+
+    }
+
+    private void mostCorrectNumber(Number number) {
+        if (number.getNumOfCorrectDigits() > guessedNumber.getNumOfCorrectDigits()) {
+            guessedNumber = number;
+        }
     }
 
     public int newDigit(int index) {
         return (index == 0) ? new Random().nextInt(9) : new Random().nextInt(8) + 1;
     }
 
-    private void newNumber() {
-
-    }
-
-    private void compareNumbers() {
-
+    private int userInput() {
+        System.out.println("Number of correct digits: ");
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextInt();
     }
 
     public static void main(String[] args) {
-        MindReader mindReader = new MindReader(5);
+        System.out.println("Digits of number: ");
+        Scanner scanner = new Scanner(System.in);
+        MindReader mindReader = new MindReader(scanner.nextInt());
+        mindReader.newTurn();
+        System.out.println("The guessed number is: " + mindReader.guessedNumber.getIntNumber());
     }
 }
