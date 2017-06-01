@@ -1,14 +1,9 @@
 package com.codecool.mindreader;
 
-import com.sun.org.apache.xpath.internal.operations.String;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-/**
- * Created by mate on 2017.05.31..
- */
 public class Number {
     private List<Integer> listOfDigits;
     private List<Integer> indicesOfCorrectDigits;
@@ -28,6 +23,10 @@ public class Number {
 
     public List<Integer> getIndicesOfCorrectDigits() {
         return indicesOfCorrectDigits;
+    }
+
+    public int getNumOfCorrectDigits() {
+        return indicesOfCorrectDigits.size();
     }
 
     public int getIntNumber() {
